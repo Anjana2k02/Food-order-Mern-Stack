@@ -1,0 +1,125 @@
+/* Base styles for the navbar */
+.navbar {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease; /* Smooth transition for all properties */
+}
+
+.navbar .logo {
+    width: 150px;
+    transition: width 0.4s ease; /* Smooth transition for logo width */
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    color: #49557e;
+    font-size: 18px;
+    transition: gap 0.4s ease, font-size 0.4s ease; /* Smooth transition for menu spacing and font size */
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    transition: gap 0.4s ease; /* Smooth transition for spacing */
+}
+
+.navbar button {
+    background: transparent;
+    font-size: 16px;
+    color: #49557e;
+    border: 1px solid tomato;
+    padding: 10px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.4s ease, color 0.4s ease, padding 0.4s ease; /* Smooth transition for button properties */
+}
+
+.navbar button:hover {
+    background: tomato;
+    color: white;
+}
+
+.navbar .active {
+    padding-bottom: 2px;
+    border-bottom: 2px solid #49557e;
+}
+
+.navbar li {
+    cursor: pointer;
+}
+
+/* Media query for 1050px */
+@media (max-width: 1050px) {
+    .navbar {
+        padding: 18px 0px;
+    }
+    .navbar .logo {
+        width: 140px;
+    }
+    .navbar-menu {
+        gap: 18px;
+        font-size: 17px;
+    }
+    .navbar-right {
+        gap: 35px;
+    }
+    .navbar button {
+        padding: 9px 28px;
+        font-size: 15px;
+    }
+}
+
+/* Media query for 900px */
+@media (max-width: 900px) {
+    .navbar {
+        padding: 15px 0px;
+    }
+    .navbar .logo {
+        width: 130px;
+    }
+    .navbar-menu {
+        gap: 16px;
+        font-size: 16px;
+    }
+    .navbar-right {
+        gap: 30px;
+    }
+    .navbar button {
+        padding: 8px 25px;
+        font-size: 14px;
+    }
+}
+
+/* Media query for 750px */
+@media (max-width: 750px) {
+    .navbar .logo {
+        width: 50px;
+    }
+    .navbar button{
+        height: 30px;
+        width: 80px;
+        font-size: 12px;
+        padding: 0px 0px;
+    }
+
+    .navbar img{
+        width: 15px;
+        height: auto;
+        
+    } 
+
+    .navbar-right{
+        width: 120px;
+        gap: 15px;
+    }
+
+    .navbar a{
+        font-size: 12px;
+    }
+    
+}
