@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
 import { useState } from 'react'
@@ -12,6 +12,17 @@ const Add = () => {
     price:"",
     category:"salad",
   })
+
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setData(data=>({...data,[name]:value}))
+  }
+
+  useEffect(()=>{
+    console.log(data)
+
+  },[data])
   return (
     <div className='add'>
       <form className='flex-col'>
@@ -24,16 +35,16 @@ const Add = () => {
         </div>
         <div className="add-product-name flex-col">
           <p>Product Name</p>
-          <input type='text' name='name' placeholder='type here'/>
+          <input onChange={onChangeHandler} value={data.name}type='text' name='name' placeholder='type here'/>
         </div>
         <div className="add-product-description flex-col">
           <p>Product Description</p>
-          <textarea name='description'  rows='6' placeholder='wite content here' required></textarea>
+          <textarea onChange={onChangeHandler}value={data.description} name='description'  rows='6' placeholder='wite content here' required></textarea>
         </div>
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>Category</p>
-            <select name='category'>
+            <select onChange={onChangeHandler} value={data.category}name='category'>
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
               <option value="Desert">Desert</option>
@@ -45,7 +56,7 @@ const Add = () => {
           </div>
           <div className="add-price flex-col">
             <p>Product Price</p>
-            <input type='Number' name='price' placeholder='$20'/>
+            <input onChange={onChangeHandler} value={data.price}type='Number' name='price' placeholder='$20'/>
           </div>
         </div>
         <button type='submit' className='add-btn'>Add</button>
