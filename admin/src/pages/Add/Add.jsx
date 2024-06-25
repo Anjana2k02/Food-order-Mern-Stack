@@ -19,13 +19,18 @@ const Add = () => {
     setData(data=>({...data,[name]:value}))
   }
 
+  const onSubmitHandler = async (event) =>{
+    event.preventDefault();
+
+  }
+
   useEffect(()=>{
     console.log(data)
 
   },[data])
   return (
     <div className='add'>
-      <form className='flex-col'>
+      <form className='flex-col' onSubmit={onSubmitHandler}>
         <div className="add-image-upload flex-col">
             <p>Upload Image</p>
             <label htmlFor='image'>
