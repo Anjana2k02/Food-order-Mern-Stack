@@ -2,6 +2,7 @@
 
 import foodModel from "../models/foodModel.js";
 import fs from 'fs';
+import path from 'path';
 
 // add food item
 export const addFood = async (req, res) => {
@@ -24,16 +25,15 @@ export const addFood = async (req, res) => {
     }
 };
 
-//all food list 
- export const listFood = async (req, res) =>{
+// all food list 
+export const listFood = async (req, res) => {
     try {
         const foods = await foodModel.find({});
-        res.jason({success:true, data:foods})
+        res.json({ success: true, data: foods });
     } catch (error) {
         console.log(error);
-        res.json({success:false, message:"Error"})
-        
-        
+        res.json({ success: false, message: "Error" });
     }
+};
 
- }             
+

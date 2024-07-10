@@ -8,22 +8,51 @@ const List = () => {
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/food/list`);
-    console.log(response.data);
-    if (response.data.success) {
-      setList(response.data.data);
-    } else {
-      toast.error("Error");
+    try {
+      const response = await axios.get(`${url}/api/food/list`);
+      if (response.data.success) {
+        setList(response.data.data);
+      } else {
+        toast.error("Error");
+      }
+    } catch (error) {
+      toast.error("Error fetching data");
     }
   };
 
+  const removeFood = async(foodId) => {
+    const response = await axios.post(`${url}/api/food/remove` , {id:foodId});
+    await fetchList();
+
+  }
   useEffect(() => {
     fetchList();
   }, []);
 
   return (
-    <div className='list'>
-      {/* You might want to render the list items here */}
+    <div className='list add flex-col'>
+      <p>All food list</p>
+      <div className="list-table">
+        <div className="list-table-format title">
+          <b>Image</b>
+          <b>Name</b>
+          <b>Category</b>
+          <b>Price</b>
+          <b>Action</b>
+        </div>
+        {list.map((item,index)=>{
+          return(
+            <div className="list-table-format" key={index}>
+              <img src={`&{url}/image}`+item.image} alt="" />
+              <p>{item.name}</p>
+              <p>{item.category}</p>
+              <p>{item.price}</p>
+              <button onClick={()=>removeFood(item._id)}>Remove</button>
+            </div>
+          )
+
+        })}
+      </div>
     </div>
   );
 };
