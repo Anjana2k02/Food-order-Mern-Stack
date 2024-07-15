@@ -8,7 +8,9 @@ import validator from "validator"
 const loginUser = async (req,res) => {
 
 }
-
+const createToken = (id) => {
+    return jwt.sign({id},process.env.TWT_SECRETE)
+}
 //register user
 const registerUser = async (req, res) => {
     const { name, password, email} = req.body;
@@ -28,6 +30,21 @@ const registerUser = async (req, res) => {
         if(password.length<8){
             return res.json({success:false,message:"Password too short"})
         }
+
+        //hash password
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
+
+        const newUser = new userModel({
+            name:name,
+            email:email,
+            password:hashedPassword
+        })
+
+        //save user
+        const user = await newUser.save()
+
+
     } catch (error) {
         
     }
