@@ -21,6 +21,7 @@ const List = () => {
   };
 
   const removeFood = async(foodId) => {
+    console.log(foodId)
     const response = await axios.post(`${url}/api/food/remove` , {id:foodId});
     await fetchList();
 
@@ -43,7 +44,7 @@ const List = () => {
         {list.map((item,index)=>{
           return(
             <div className="list-table-format" key={index}>
-              <img src={`&{url}/image}`+item.image} alt="" />
+              <img src={`${url}/images/`+item.image} />
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price}</p>
